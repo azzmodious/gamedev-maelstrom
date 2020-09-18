@@ -62,15 +62,21 @@ public class GameController : MonoBehaviour
         GameObject[] spaceObjects = GameObject.FindGameObjectsWithTag("SpaceObject");
         foreach(GameObject go in spaceObjects)
         {
-            if (go.transform.position.x > mousePoint.x + edgeMargin)
-                go.transform.position = new Vector3(-mousePoint.x, 0, go.transform.position.z);
-            if (go.transform.position.x < -mousePoint.x - edgeMargin)
-                go.transform.position = new Vector3(mousePoint.x, 0, go.transform.position.z);
-            if (go.transform.position.z < -mousePoint.z - edgeMargin)
-                go.transform.position = new Vector3(go.transform.position.x, 0, mousePoint.z);
-            if (go.transform.position.z > mousePoint.z + edgeMargin)
-                go.transform.position = new Vector3(go.transform.position.x, 0, -mousePoint.z);
+            transformToDoughnut(go);
         }
+        transformToDoughnut(player);
+    }
+
+    private void transformToDoughnut(GameObject go)
+    {
+        if (go.transform.position.x > mousePoint.x + edgeMargin)
+            go.transform.position = new Vector3(-mousePoint.x, 0, go.transform.position.z);
+        if (go.transform.position.x < -mousePoint.x - edgeMargin)
+            go.transform.position = new Vector3(mousePoint.x, 0, go.transform.position.z);
+        if (go.transform.position.z < -mousePoint.z - edgeMargin)
+            go.transform.position = new Vector3(go.transform.position.x, 0, mousePoint.z);
+        if (go.transform.position.z > mousePoint.z + edgeMargin)
+            go.transform.position = new Vector3(go.transform.position.x, 0, -mousePoint.z);
     }
     private void LateUpdate()
     {

@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float rotationSpeed;
-    public float thrustStrength; 
+    public float thrustStrength;
+    public GameObject bulletType;
     private Rigidbody rb; 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +22,17 @@ public class PlayerController : MonoBehaviour
 
         float thrustInput = Input.GetAxis("Vertical");
         rb.AddForce(transform.forward * thrustStrength * thrustInput * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            onShoot();
+        }
+    }
+
+    void onShoot()
+    {
+        Instantiate(bulletType, transform.position, transform.rotation);
+       // Instantiate(bullet, )
     }
 
     private void FixedUpdate()
