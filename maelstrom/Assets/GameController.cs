@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     public GameObject player;
     public Camera camera;
     public GameObject asteroid;
+    public GameObject smallAsteroid;
     public float edgeMargin;
     public Vector2 screenBounds;
     public Vector2 screenSize;
@@ -21,6 +22,19 @@ public class GameController : MonoBehaviour
         screenSize = new Vector2(Screen.width, Screen.height);
         //screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0));
         //spawn(asteroid);
+    }
+
+    public void HandleAsteroidHit(GameObject obj)
+    {
+        Debug.Log("Asteroid hit");
+        if (obj.name.Contains("Big"))
+        {
+            Instantiate(smallAsteroid, obj.transform.position, obj.transform.rotation);
+            Instantiate(smallAsteroid, obj.transform.position, obj.transform.rotation);
+            Instantiate(smallAsteroid, obj.transform.position, obj.transform.rotation);
+            Instantiate(smallAsteroid, obj.transform.position, obj.transform.rotation);
+        }
+        
     }
     public void spawn(GameObject go)
     {

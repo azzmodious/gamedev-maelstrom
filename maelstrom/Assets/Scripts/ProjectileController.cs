@@ -6,10 +6,12 @@ public class ProjectileController : MonoBehaviour
 {
     public float speed;
     public float ttl;
-    public float startTime; 
+    public float startTime;
+    public GameObject GameManager; 
     // Start is called before the first frame update
     void Start()
     {
+        GameManager = GameObject.Find("GameManager");
         startTime = Time.time;
     }
 
@@ -27,8 +29,11 @@ public class ProjectileController : MonoBehaviour
         Debug.Log(other.gameObject.name + " was hit by a bullet");       
            if(other.gameObject.tag == "SpaceObject")
             {
+                GameController controller = (GameController)GameManager.GetComponent(typeof(GameController));
+                controller.HandleAsteroidHit(other.gameObject);
                 Destroy(gameObject);
                 Destroy(other.gameObject);
+           
             }
             
         

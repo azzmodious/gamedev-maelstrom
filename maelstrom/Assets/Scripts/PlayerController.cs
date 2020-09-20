@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
     public float rotationSpeed;
     public float thrustStrength;
     public GameObject bulletType;
+    public GameObject shield;
     private Rigidbody rb; 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        shield.SetActive(false);
     }
 
     // Update is called once per frame
@@ -26,6 +28,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             onShoot();
+        }
+        shield.SetActive(false);
+        if (Input.GetKey(KeyCode.RightShift))
+        {
+            shield.SetActive(true);
         }
     }
 
